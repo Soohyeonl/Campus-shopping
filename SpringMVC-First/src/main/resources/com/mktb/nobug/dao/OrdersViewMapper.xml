@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mktb.nobug.dao.OrdersViewDao">
+    <resultMap id="ordersViewMap" type="com.mktb.nobug.entity.OrdersView">
+        <id property="order_id" column="order_id"/>
+        <result property="buyer_id" column="buyer_id"/>
+        <result property="goods_id" column="goods_id"/>
+        <result property="quantity" column="quantity"/>
+        <result property="order_time" column="order_time"/>
+        <result property="order_state" column="order_state"/>
+        <result property="order_price" column="order_price"/>
+        <result property="cancel_time" column="cancel_time"/>
+        <result property="delivery_time" column="delivery_time"/>
+        <result property="done_time" column="done_time"/>
+        <result property="seller_id" column="seller_id"/>
+        <result property="goods_name" column="goods_name"/>
+        <result property="description" column="description"/>
+        <result property="price" column="price"/>
+        <result property="goods_picture" column="goods_picture"/>
+        <result property="address" column="address"/>
+    </resultMap>
+
+
+    <select id="getAllOrders" resultMap="ordersViewMap">
+        select o.*, g.goods_name, g.description, g.price, g.goods_picture, ud.address
+        from orders o,
+             goods g,
+             useraddress ud
+        where o.buyer_id = #{id}
+          and o.goods_id = g.goods_id
+          and o.address_id = ud.user_address_id
+    </select>
+</mapper>

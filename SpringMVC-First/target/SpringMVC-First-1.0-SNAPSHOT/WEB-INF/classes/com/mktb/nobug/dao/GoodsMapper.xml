@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mktb.nobug.dao.GoodsDao">
+    <select id="selectById" parameterType="int" resultType="com.mktb.nobug.entity.Goods">
+        select * from goods where goods_id = #{goods_id}
+    </select>
+
+    <select id="getGoodsList" resultType="com.mktb.nobug.entity.Goods">
+        select * from goods
+    </select>
+
+    <insert id="addGood" parameterType="com.mktb.nobug.entity.Goods">
+        insert into goods(goods_id,goods_name,description,stock,on_time,price,goods_picture,user_id)
+        values (#{goods_id},#{goods_name},#{description},
+                #{stock},#{on_time},#{price},#{goods_picture},#{user_id})
+    </insert>
+
+    <delete id="deleteGood" parameterType="int">
+        delete from goods where goods_id = #{goods_id}
+    </delete>
+
+    <!-- update user set user_pwd = #{new_user_pwd} where user_id = #{user_id} -->
+    <update id="updateGoodsName" parameterType="map">
+        update goods set goods_name = #{new_goods_name} where goods_id = #{goods_id}
+    </update>
+
+    <update id="updateGoodsDescription" parameterType="map">
+        update goods set description = #{new_Description} where goods_id = #{goods_id}
+    </update>
+
+    <update id="updateGoodsStock" parameterType="map">
+        update goods set stock = #{new_stock} where goods_id = #{goods_id}
+    </update>
+
+    <update id="updateGoodsOntime" parameterType="map">
+        update goods set on_time = #{new_on_time} where goods_id = #{goods_id}
+    </update>
+
+    <update id="updateGoodsPrice" parameterType="map">
+        update goods set price = #{new_price} where goods_id = #{goods_id}
+    </update>
+
+    <update id="updateGoodsPicture" parameterType="map">
+        update goods set goods_picture = #{new_goods_picture} where goods_id = #{goods_id}
+    </update>
+
+    <select id="getNextId" resultType="int">
+        select auto_increment from information_schema.tables where table_schema='tb' and table_name='goods'
+    </select>
+
+    <select id="getGoodsBySellerId" resultType="com.mktb.nobug.entity.Goods">
+        select * from goods where user_id = #{id}
+    </select>
+</mapper>

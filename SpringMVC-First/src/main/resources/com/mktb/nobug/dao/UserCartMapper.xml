@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mktb.nobug.dao.UserCartDao">
+    <select id="getUserCartList" resultType="com.mktb.nobug.entity.UserCart">
+        select * from usercart
+    </select>
+    <select id="getUserCartById" parameterType="int" resultType="com.mktb.nobug.entity.UserCart">
+        select * from usercart where user_id= #{id}
+    </select>
+
+    <insert id="addUserCart" parameterType="com.mktb.nobug.entity.UserCart">
+        insert into usercart (cart_id,user_id,goods_id,goods_stock,input_time,total_price) values (#{cart_id},#{user_id},#{goods_id},#{goods_stock},#{input_time},#{total_price})
+    </insert>
+
+    <delete id="deleteUserCart" parameterType="int">
+        delete  from usercart where cart_id=#{cart_id}
+    </delete>
+    <update id="updateGoodStock" parameterType="map">
+        update usercart
+        set goods_stock = #{goods_stock}, total_price = #{new_price}
+        where cart_id=#{usercart_id}
+    </update>
+
+    <select id="getnextId" resultType="int">
+        select auto_increment from information_schema.tables where table_schema='tb' and table_name='usercart'
+    </select>
+
+    <select id="getGoodStock" resultType="int">
+        select goods_stock
+        from usercart
+        where cart_id = #{cart_id}
+    </select>
+
+    <delete id="deleteByGoodsId" parameterType="map">
+        delete from usercart where user_id = #{user_id} and goods_id = #{goods_id}
+    </delete>
+
+    <select id="getByCartId" resultType="com.mktb.nobug.entity.UserCart">
+        select * from usercart where cart_id = #{cart_id}
+    </select>
+
+</mapper>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <script type="text/javascript">
+        function upload() {
+            var form = document.getElementById("uploadForm");
+            form.submit();
+            return true;
+        }
+
+
+        $('#file').change(function () {
+            f = document.getElementById('file').files[0];
+            var reads = new FileReader();
+            reads.readAsDataURL(f);
+            reads.onload = function(e) {
+                $('img')[0].src = this.result;
+            }
+        })
+        // 点击button来点击input:file
+        $('#').eq(0).click(function () {
+            $('#file').click()
+        })
+    </script>
+    <script src="layui/layui.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: aliceblue;
+        }
+        .layui-input {
+            width: 350px;
+        }
+        .main_box {
+            display: flex;
+            justify-content: center;
+            padding-top: 190px;
+        }
+        .btn_box {
+            padding-left: 110px;
+            width: 400px;
+            height: 45px;
+            align-items: center;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="main_box">
+        <form class="layui-form" id="uploadForm" action="/upload" enctype="multipart/form-data" method="post">
+            <div class="layui-form-item">
+                <label class="layui-form-label">商品名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="goods_name" required  lay-verify="required" placeholder="请输入..." autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">商品描述</label>
+                <div class="layui-input-block">
+                    <input type="text" name="description" required  lay-verify="required" placeholder="请输入..." autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">商品价格</label>
+                <div class="layui-input-block">
+                    <input type="text" name="price" required  lay-verify="required" placeholder="请输入..." autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">商品数量</label>
+                <div class="layui-input-block">
+                    <input type="text" name="stock" required  lay-verify="required" placeholder="请输入..." autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="btn_box">
+                <input type="file" class="btn_upload" name="file" id="file"/>
+            </div>
+            <div><img src="" alt=""></div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" type="button" onclick="upload()">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+</body>
+</html>

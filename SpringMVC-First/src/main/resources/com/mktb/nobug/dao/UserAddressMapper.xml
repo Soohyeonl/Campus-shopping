@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mktb.nobug.dao.UserAddressDao">
+    <select id="selectByUserAddressId" parameterType="int" resultType="com.mktb.nobug.entity.UserAddress">
+        select * from userAddress where user_address_id = #{user_address_id}
+    </select>
+
+    <select id="getAddressList" resultType="com.mktb.nobug.entity.UserAddress">
+        select * from userAddress
+    </select>
+
+    <insert id="addAddress" parameterType="com.mktb.nobug.entity.UserAddress">
+        insert into userAddress(user_address_id,user_id,address)
+        values (#{user_address_id},#{user_id},#{address})
+    </insert>
+
+    <delete id="deleteAddress" parameterType="int">
+        delete from userAddress where user_address_id = #{user_address_id}
+    </delete>
+
+    <!-- update user set user_pwd = #{new_user_pwd} where user_id = #{user_id} -->
+    <update id="updateAddress" parameterType="map">
+        update userAddress set address = #{new_address} where user_address_id = #{user_address_id}
+    </update>
+
+    <select id="getUserAddress" resultType="com.mktb.nobug.entity.UserAddress">
+        select * from useraddress where user_address_id = #{id} limit 1
+    </select>
+
+    <select id="getNextId" resultType="int">
+        select auto_increment from information_schema.tables where table_schema='tb' and table_name='useraddress'
+    </select>
+</mapper>

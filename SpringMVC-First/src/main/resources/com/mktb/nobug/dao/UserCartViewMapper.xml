@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mktb.nobug.dao.UserCartViewDao">
+    <resultMap id="userCartViewMap" type="com.mktb.nobug.entity.UserCartView">
+        <id property="cart_id" column="cart_id"/>
+        <result property="description" column="description"/>
+        <result property="goods_id" column="goods_id"/>
+        <result property="goods_name" column="goods_name"/>
+        <result property="goods_picture" column="goods_picture"/>
+        <result property="goods_stock" column="goods_stock"/>
+        <result property="input_time" column="input_time"/>
+        <result property="on_time" column="on_time"/>
+        <result property="price" column="price"/>
+        <result property="total_price" column="total_price"/>
+        <result property="user_id" column="user_id"/>
+        <result property="seller_id" column="seller_id"/>
+    </resultMap>
+
+    <select id="getAllCartById" resultMap="userCartViewMap">
+        select c.*, g.goods_name, g.description, g.goods_picture, g.price, g.user_id as seller_id, g.on_time
+        from usercart c,
+             goods g
+        where c.user_id = #{id}
+          and c.goods_id = g.goods_id
+    </select>
+</mapper>

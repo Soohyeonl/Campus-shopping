@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace = 绑定一个对应的Dao/Mapper接口 -->
+
+<mapper namespace="com.mktb.nobug.dao.UserDao">
+    <select id="getUserList" resultType="com.mktb.nobug.entity.User">
+        select * from user
+    </select>
+
+    <select id="getUserById" parameterType="Integer" resultType="com.mktb.nobug.entity.User">
+        select * from user where user_id=#{id}
+    </select>
+
+    <select id="getUserByPhone" parameterType="string" resultType="com.mktb.nobug.entity.User">
+        select * from user where user_phone=#{phone}
+    </select>
+
+    <insert id="addUser" parameterType="com.mktb.nobug.entity.User">
+        insert into user (user_id, user_pwd, user_nick_name, user_picture, user_phone, user_type) values (#{user_id}, #{user_pwd}, #{user_nick_name}, #{user_picture}, #{user_phone}, #{user_type})
+    </insert>
+
+    <delete id="deleteUserById" parameterType="Integer">
+        delete from user where user_id = #{id}
+    </delete>
+
+    <update id="updateUserPwd" parameterType="map">
+        update user set user_pwd = #{new_user_pwd} where user_id = #{user_id}
+    </update>
+
+    <update id="updateUserNickName" parameterType="map">
+        update user set user_nick_name = #{new_user_nick_name} where user_id = #{user_id}
+    </update>
+
+    <update id="updateUserPicture" parameterType="map">
+        update user set user_picture = #{new_user_picture} where user_id = #{user_id}
+    </update>
+
+    <update id="updateUserPhone" parameterType="map">
+        update user set user_phone = #{new_user_phone} where user_id = #{user_id}
+    </update>
+
+    <update id="updateUserType" parameterType="map">
+        update user set user_type = #{new_user_type} where user_id = #{user_id}
+    </update>
+
+    <select id="getNextId" resultType="int">
+        select auto_increment from information_schema.tables where table_schema='tb' and table_name='user'
+    </select>
+</mapper>

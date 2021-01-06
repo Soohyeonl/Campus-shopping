@@ -1,0 +1,116 @@
+
+#img2{
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    top: 0px;
+    left: 50px;
+}
+.fram{
+    position: relative;
+    /*margin:0 auto;*/
+    border:1px black solid;
+    width: 500px;
+    height: 400px;
+    top: 150px;
+    left: 800px;
+}
+.biaoti{
+    margin:0 auto;
+    width:195px;
+    height:86px;
+    position: relative;
+    top:10px;
+    /*border: 1px red solid;*/
+    border-radius: 10px;
+}
+.father{
+    position: relative;
+
+    width:800px;
+    height:400px;
+    border-radius: 10px;
+    margin: 0 auto;
+    top:150px;
+}
+form{
+    position: absolute;
+    width: 550px;
+    left: 145px;
+    height: 400px;
+}
+.selc{
+    position: absolute;
+    width: 450px;
+    top:-150px;
+    left:-111px;
+}
+select{
+    width: 155px;
+    height: 44px;
+    padding-left: 10px;
+    border-radius: 10px;
+    font-family: "Adobe 黑体 Std R";
+}
+.zhusuqu{
+    position: absolute;
+    left: 222px;
+    top:10px;
+}
+.xiaoqu{
+    position: relative;
+}
+#sec2{
+    position: absolute;
+    left: 290px;
+}
+.xiangzhi{
+    position: absolute;
+
+    top: -70px;
+    left: -111px;
+}
+#s12{
+    font-family: 微軟正黑體;
+    font-size: 16px;
+    font-weight: bold;
+}
+.txt{
+    border-radius: 10px;
+    width: 364px;
+    height: 37px;
+}
+.s_btn{
+    position: absolute;
+    top: 38px;
+    left: -120px;
+    width: 450px;
+    height: 24px;
+
+}
+.btn{
+    width: 78px;
+    height: 37px;
+    border-radius: 20px;
+    background: #50d090;
+}
+.btn:hover{
+    background: #40e8e8;
+}
+#bt1{
+    position: relative;
+    left: 125px;
+    font-family: 微軟正黑體;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#bt2{
+    position: relative;
+    left: 160px;
+    font-family: 微軟正黑體;
+    font-size: 15px;
+    font-weight: bold;
+}

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mktb.nobug.dao.OrdersDao">
+    <select id="GetOrdersList" resultType="com.mktb.nobug.entity.Orders">
+        select * from orders
+    </select>
+
+    <insert id="adduOrders" parameterType="com.mktb.nobug.entity.Orders">
+        insert into orders (order_id,buyer_id,goods_id,quantity,order_time,order_state,order_price,cancel_time,delivery_time,done_time,seller_id,pay_time,address_id) values(#{order_id},#{buyer_id},#{goods_id},#{quantity},#{order_time},#{order_state},#{order_price},#{cancel_time},#{delivery_time},#{done_time},#{seller_id},#{pay_time},#{address_id})
+    </insert>
+
+    <delete id="deleteOrders">
+        delete from orders where order_id=#{order_id}
+    </delete>
+
+    <update id="updatePayTime" parameterType="map">
+        update orders
+        set pay_time =#{pay_time},order_state=#{order_state}
+        where order_id=#{order_id}
+    </update>
+
+    <update id="updateCancelTime" parameterType="map">
+        update orders
+        set cancel_time =#{cancel_time},order_state=#{order_state}
+        where order_id=#{order_id}
+    </update>
+
+    <update id="updateDeliveryTime" parameterType="map">
+        update orders
+        set delivery_time=#{delivery_time},order_state=#{order_state}
+        where order_id=#{order_id}
+    </update>
+
+    <update id="updateDoneTime" parameterType="map">
+        update orders
+        set done_time=#{done_time},order_state=#{order_state}
+        where order_id=#{order_id}
+    </update>
+
+    <select id="getnextId" resultType="int">
+        select auto_increment from information_schema.tables where table_schema='tb' and table_name='orders'
+    </select>
+
+    <select id="getSellOrdersById" resultType="com.mktb.nobug.entity.Orders">
+        select * from orders where seller_id = #{id}
+    </select>
+
+    <select id="getOrderById" resultType="com.mktb.nobug.entity.Orders">
+        select * from orders where order_id = #{id}
+    </select>
+</mapper>
